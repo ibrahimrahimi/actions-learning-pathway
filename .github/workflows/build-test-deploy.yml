@@ -1,8 +1,5 @@
 name: build-test-deploy
-on: 
-  push:
-    branches:
-      - main  # Adjust to your default branch
+on: push
 jobs: 
   build:
     runs-on: ubuntu-latest
@@ -36,7 +33,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Add ESLint Configuration
+        run: |
+          echo '{
+            "extends": "next/core-web-vitals"
+          }' > .eslintrc.json
+
       - name: Run Tests
         run: npm test
         env:
-          CI: true  # Set CI environment variable to suppress interactive prompts
+          CI: true
