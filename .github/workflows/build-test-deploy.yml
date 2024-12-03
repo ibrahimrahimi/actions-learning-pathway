@@ -1,26 +1,42 @@
 name: build-test-deploy
-on: push
+on: 
+  push:
+    branches:
+      - main  # Adjust to your default branch
 jobs: 
   build:
     runs-on: ubuntu-latest
     steps: 
-      - name: checkout repo
+      - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: use node.js
+
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - run: npm install
-      - run: npm run build 
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
   test: 
     needs: build
     runs-on: ubuntu-latest
     steps: 
-      - name: checkout repo
+      - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: use node.js
+
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - run: npm install
-      - run: npm test
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+        env:
+          CI: true  # Set CI environment variable to suppress interactive prompts
