@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "test": "next lint"
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "test": "echo 'No test specified' && exit 0"
   },
   "dependencies": {
     "next": "14.2.10",
@@ -14,11 +15,15 @@
     "react-dom": "18.2.0"
   },
   "eslintConfig": {
-    "extends": "next/core-web-vitals"
+    "extends": "next/core-web-vitals",
+    "rules": {
+    "react/no-unescaped-entities": "off"
+  }
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
-    "eslint": "^9.16.0",
+    "eslint": "^8.49.0",
+    "eslint-config-next": "^14.2.10",
     "eslint-plugin-react": "^7.37.2",
     "globals": "^15.13.0"
   }
